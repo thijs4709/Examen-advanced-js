@@ -64,7 +64,8 @@ function tonen(id) { // in deze functie worden de kaartjes met elkaar vergeleken
         //dit zorgt voor de controle als alle vakjes weg zijn dat je ziet dat je gewonnen hebt + het geeft je aantal zetten weer
         controleEindeSpel--;
         if (controleEindeSpel===0){
-            alert("proficiat u heeft gewonnen in " + counterClick/2 + " zetten")
+            alert("proficiat u heeft gewonnen in " + counterClick/2 + " zetten");
+            location.reload();//voor de pagina opniew te laden laden zodat je opniew kan spelen
         }
 
 
