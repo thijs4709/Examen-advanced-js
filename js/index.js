@@ -32,9 +32,9 @@ let plaatsVakjes = document.getElementById("plaatsVakjes");
 for (var z = 1; z <= aantalVakjes; z++) {
     let kaart = document.createElement("div");
     kaart.innerHTML = `
-    <div onclick="tonen(${z})" id="${z}" class="card bg-primary m-3" style="width: 5rem; height: 5rem">
+    <div onclick="tonen(${z})" id="${z}" class="card bg-primary m-3 rounded-circle" style="width: 5rem; height: 5rem">
         <div class="card-body ">
-            <p id="nummerP${z}" class="w-100 h-100 card-text text-white d-flex align-items-center justify-content-center bg-danger nummer${arrayRandomNumber[z-1]} d-none">${arrayRandomNumber[z-1]}</p>
+            <p id="nummerP${z}" class="rounded-circle w-100 h-100 card-text text-white d-flex align-items-center justify-content-center bg-danger nummer${arrayRandomNumber[z-1]} d-none">${arrayRandomNumber[z-1]}</p>
         </div>
     </div>`
     plaatsVakjes.appendChild(kaart);
