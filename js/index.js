@@ -1,12 +1,10 @@
-
-
 /**vragen aantal vakjes**/
 let aantalVakjes = Number(prompt("Hoeveel vakjes wil je? Geef een even getal in"));
-let controleEindeSpel = aantalVakjes/2
+let controleEindeSpel = aantalVakjes / 2;
 for (let i = 1; i < 2; i--) { //for loop zorgt ervoor dat je geen oneven getallen of andere waarden kan ingeven
     if (aantalVakjes % 2 === 0) {
         break
-    }else{
+    } else {
         aantalVakjes = Number(prompt("Geef een EVEN getal in."));
     }
 }
@@ -23,20 +21,21 @@ for (let i = 1; i <= aantalVakjes / 2; i++) { //array wordt opgevuld met de waar
 let arrayRandomNumber = array.sort(function () {
     return Math.random() - 0.5;
 });
-var counterClick = 0;
-var guessResults = "";
-var idGuess1 = "";
+let counterClick = 0;
+let guessResults = "";
+let idGuess1 = "";
+let pTagValue = "";
 
 /**vakjes genereren**/
 let plaatsVakjes = document.getElementById("plaatsVakjes");
-for (var z = 1; z <= aantalVakjes; z++) {
+for (let z = 1; z <= aantalVakjes; z++) {
     let kaart = document.createElement("div");
     kaart.innerHTML = `
     <div onclick="tonen(${z})" id="${z}" class="card bg-primary m-3 rounded-circle" style="width: 5rem; height: 5rem">
         <div class="card-body ">
-            <p id="nummerP${z}" class="rounded-circle w-100 h-100 card-text text-white d-flex align-items-center justify-content-center bg-danger nummer${arrayRandomNumber[z-1]} d-none">${arrayRandomNumber[z-1]}</p>
+            <p id="nummerP${z}" class="rounded-circle w-100 h-100 card-text text-white d-flex align-items-center justify-content-center bg-danger nummer${arrayRandomNumber[z - 1]} d-none">${arrayRandomNumber[z - 1]}</p>
         </div>
-    </div>`
+    </div>`;
     plaatsVakjes.appendChild(kaart);
 }
 
@@ -59,12 +58,17 @@ function tonen(id) { // in deze functie worden de kaartjes met elkaar vergeleken
         //true
         // onclick event weg
         card.removeAttribute("onclick");
+        card.classList.remove("bg-primary")
+        card.classList.add("bg-success");
         document.getElementById(idGuess1).removeAttribute("onclick");
+        document.getElementById(idGuess1).classList.remove("bg-primary");
+        document.getElementById(idGuess1).classList.add("bg-success");
         idGuess1 = "";
+
         //dit zorgt voor de controle als alle vakjes weg zijn dat je ziet dat je gewonnen hebt + het geeft je aantal zetten weer
         controleEindeSpel--;
-        if (controleEindeSpel===0){
-            alert("proficiat u heeft gewonnen in " + counterClick/2 + " zetten");
+        if (controleEindeSpel === 0) {
+            alert("proficiat u heeft gewonnen in " + counterClick / 2 + " zetten");
             location.reload();//voor de pagina opniew te laden laden zodat je opniew kan spelen
         }
 
@@ -74,13 +78,10 @@ function tonen(id) { // in deze functie worden de kaartjes met elkaar vergeleken
         //stylen weer naar dnone
         if (counterClick % 2 === 0) {//2 click
             setTimeout(add_d_none, 200, pTag);//huidig click
-            // console.log(idGuess1, "idguess1")
             let divTagGuess1 = document.getElementById(idGuess1);
-            // console.log(divTagGuess1, "divTagGuess1");
             let pTagGuess1 = divTagGuess1.querySelector("p");
-            // console.log(pTagGuess1, "pTagGuess1");
             add_d_none(pTagGuess1);//eerste click
-            pTagGuess1.parentElement.parentElement.setAttribute("onclick",`tonen(${pTagGuess1.parentElement.parentElement.id.valueOf()})`)// om het onclick event terug te zetten
+            pTagGuess1.parentElement.parentElement.setAttribute("onclick", `tonen(${pTagGuess1.parentElement.parentElement.id.valueOf()})`)// om het onclick event terug te zetten
             idGuess1 = "";
 
         } else {//1click
@@ -88,11 +89,12 @@ function tonen(id) { // in deze functie worden de kaartjes met elkaar vergeleken
     }
 
 }
+
 //deze functie controleert of op je 1 click zit dan geeft hij fals terug en vult hij de guessResult, zit je op de 2 click dan geeft hij true terug als de cijfers van de p tag overeenkomen zoniet dan geeft hij false terug
 function compareGuesses(pTag) {
     pTagValue = pTag.innerHTML;
     if (guessResults) {
-        if (guessResults == pTagValue) {
+        if (guessResults === pTagValue) {
             guessResults = "";
             return true;
         } else {
