@@ -4,9 +4,8 @@ let controleEindeSpel = aantalVakjes / 2;
 for (let i = 1; i < 2; i--) { //for loop zorgt ervoor dat je geen oneven getallen of andere waarden kan ingeven
     if (aantalVakjes % 2 === 0) {
         break
-    } else {
-        aantalVakjes = Number(prompt("Geef een EVEN getal in."));
     }
+    aantalVakjes = Number(prompt("Geef een EVEN getal in."));
 }
 
 /**array opvullen met de aangegeven nummers**/
@@ -50,9 +49,8 @@ function tonen(id) { // in deze functie worden de kaartjes met elkaar vergeleken
     if (!idGuess1) { //hier wordt gekeken of het id al genomen is geweest zo ja dan doet hij niet zo neen dat zal hij hem gelijk zetten
         idGuess1 = id;
         card.removeAttribute("onclick")//om te zorgen dat de eerste vakje niet opniew kan worden gekozen
-    } else {
-
     }
+
 //hier worden de komt de resultaat uit de andere functie die true of false geeft terug,
     if (compareGuesses(pTag)) { //als de vakjes juist zijn zal hier de onclick event worden weggedaan
         //true
@@ -87,7 +85,6 @@ function tonen(id) { // in deze functie worden de kaartjes met elkaar vergeleken
         } else {//1click
         }
     }
-
 }
 
 //deze functie controleert of op je 1 click zit dan geeft hij fals terug en vult hij de guessResult, zit je op de 2 click dan geeft hij true terug als de cijfers van de p tag overeenkomen zoniet dan geeft hij false terug
@@ -100,8 +97,6 @@ function compareGuesses(pTag) {
         } else {
             guessResults = "";
             return false;
-
-
         }
     } else {
         guessResults = pTagValue;
